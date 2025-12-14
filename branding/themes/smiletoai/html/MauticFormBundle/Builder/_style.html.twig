@@ -1,0 +1,107 @@
+<style type="text/css" scoped>
+    {% set brandAccent = '#5bc0eb' %}
+    {% set textOnDark = '#e2e8f0' %}
+
+    /* Form element */
+    .mauticform_wrapper form {
+        display: grid;
+        gap: 12px;
+        max-width: 520px;
+        padding: 18px 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        background: rgba(2,6,23,0.6);
+        box-shadow: 0 20px 30px -12px rgba(0,0,0,0.45);
+        margin: 0 auto;
+    }
+
+    /* Labels */
+    .mauticform-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: {{ textOnDark }};
+        letter-spacing: 0.01em;
+        margin-bottom: 4px;
+    }
+
+    /* Text inputs / email inputs */
+    .mauticform-input,
+    .mauticform-textarea,
+    .mauticform-selectbox {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.03);
+        color: {{ textOnDark }};
+        font-size: 15px;
+        outline: none;
+        transition: border-color 120ms ease, box-shadow 120ms ease;
+    }
+    .mauticform-input:focus,
+    .mauticform-textarea:focus,
+    .mauticform-selectbox:focus {
+        border-color: {{ brandAccent }};
+        box-shadow: 0 0 0 3px rgba(91,192,235,0.25);
+    }
+    .mauticform-input,
+    .mauticform-textarea,
+    .mauticform-selectbox {
+        box-shadow: none;
+    }
+
+    /* Submit button */
+    /* Button row spacing */
+    .mauticform_wrapper form .mauticform-row.mauticform-button-wrapper,
+    .mauticform_wrapper form .mauticform-button-wrapper {
+        margin-top: 32px !important;
+        display: block !important;
+    }
+
+    .mauticform_wrapper form .mauticform-button-wrapper .mauticform-button,
+    .mauticform_wrapper form .mauticform-button-wrapper input[type="submit"] {
+        width: 100%;
+        padding: 12px 16px;
+        border: 0;
+        border-radius: 999px;
+        background: {{ brandAccent }};
+        color: #0f172a;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(91,192,235,0.35);
+        transition: transform 120ms ease, box-shadow 150ms ease, background 150ms ease;
+        margin-top: 0 !important;
+    }
+    .mauticform-button-wrapper .mauticform-button:hover {
+        background: #0b6e99;
+        transform: translateY(-1px);
+        box-shadow: 0 16px 28px rgba(91,192,235,0.42);
+    }
+    .mauticform-button-wrapper .mauticform-button:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(91,192,235,0.30);
+    }
+
+    /* Captcha container */
+    .mauticform-row.mauticform-row-captcha,
+    .mauticform-row[data-mautic-form-captcha] {
+        padding: 10px 12px;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.02);
+    }
+
+    /* Error / help */
+    .mauticform-errormsg,
+    .mauticform-error {
+        color: #f87171;
+        font-weight: 700;
+    }
+    .mauticform-helpmessage {
+        color: #cbd5e1;
+        font-size: 13px;
+        margin-top: 4px;
+    }
+</style>

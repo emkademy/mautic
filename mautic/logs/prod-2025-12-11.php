@@ -1,0 +1,1 @@
+[2025-12-11T10:50:16.226197+00:00] php.ERROR: Warning: Packets out of order. Expected 1 received 0. Packet size=145 {"exception":"[object] (ErrorException(code: 0): Warning: Packets out of order. Expected 1 received 0. Packet size=145 at /var/www/html/vendor/doctrine/dbal/src/Driver/PDO/Statement.php:130)"} {"hostname":"0a834f38948a","pid":28}

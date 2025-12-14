@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function () {
+      try {
+        const gclid = new URLSearchParams(window.location.search).get('gclid');
+        if (!gclid || !gclid.trim()) return;
+
+        const value = gclid.trim();
+
+        try {
+          window.localStorage.setItem('gclid', value);
+        } catch (_) {}
+
+        const maxAgeSeconds = 60 * 60 * 24 * 90;
+        document.cookie = `gclid=${encodeURIComponent(value)}; Path=/; Max-Age=${maxAgeSeconds}; SameSite=Lax`;
+      } catch (_) {}
+    })();
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-K65WDZGV');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>End-to-End Machine Learning Course | Python + MLOps Project Blueprint</title>
+  <meta name="description" content="Master sustainable, scalable ML project development with Python, distributed data workflows, feature pipelines, MLOps tooling, and real deployment patterns." />
+  <meta name="keywords" content="end-to-end machine learning, machine learning project development, MLOps with Python, scalable ML projects, sustainable ML" />
+  <link rel="canonical" href="https://example.com" />
+  <meta property="og:title" content="End-to-End Machine Learning Course | From Idea to Implementation" />
+  <meta property="og:description" content="Go from blank notebook to production-grade ML stack with Kıvanç Yüksel. Learn data versioning, distributed training, experiment tracking, and deployment." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://example.com/udemy/end-to-end-machine-learning" />
+  <meta property="og:image" content="https://storage.googleapis.com/emkademy-public/images/udemy/udemy-course-image-new.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Engineer building sustainable machine learning pipelines" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="End-to-End Machine Learning Course | Python + MLOps Project Blueprint" />
+  <meta name="twitter:description" content="Ship sustainable ML projects faster with distributed data pipelines, automated evaluation, experiment tracking, and production deployment best practices." />
+  <meta name="twitter:image" content="https://storage.googleapis.com/emkademy-public/images/udemy/udemy-course-image-new.png" />
+  <meta name="twitter:image:width" content="1200" />
+  <meta name="twitter:image:height" content="630" />
+  <meta name="twitter:image:alt" content="Engineer building sustainable machine learning pipelines" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #020617; /* slate-950 */
+      --card: rgba(15, 23, 42, 0.6); /* slate-900/60 */
+      --card-border: rgba(255, 255, 255, 0.1); /* white/10 */
+      --text: #e2e8f0; /* slate-200 */
+      --muted: #cbd5e1; /* slate-300 */
+      --brand: #5bc0eb;
+      --brand-dark: #0b6e99;
+      --shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.45), 0 10px 10px -5px rgba(15, 23, 42, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { color: var(--brand-dark); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(24px);
+      background: rgba(2, 6, 23, 0.8);
+    }
+
+    .wrap {
+      max-width: 72rem; /* matches Next.js max-w-6xl */
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .head-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 0; /* py-5 */
+    }
+
+    .badge {
+      font-size: 0.75rem; /* text-xs */
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0 0 0.35rem;
+      font-weight: 600;
+    }
+
+    .eyebrow {
+      font-size: 0.875rem; /* text-sm */
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0 0 0.75rem;
+      font-weight: 600;
+    }
+
+    h1 { margin: 0; font-size: 1.5rem; font-weight: 600; }
+    h2 { margin: 0 0 0.35rem; font-size: clamp(2.25rem, 3.4vw, 3rem); font-weight: 700; }
+    h3 { margin: 0 0 0.35rem; font-size: 1.875rem; font-weight: 600; }
+    p { margin: 0; line-height: 1.6; }
+
+    main {
+      padding: 4rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem; /* gap-16 */
+    }
+
+    main > .card:first-of-type { margin-top: 3rem; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem; /* rounded-2xl */
+      padding: 1.5rem; /* p-6 */
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem; /* gap-10 */
+    }
+
+    .hero-row > * { flex: 1; }
+
+    @media (min-width: 1024px) {
+      .hero-row { flex-direction: row; align-items: center; }
+    }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .chip {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1rem; /* py-2 px-4 */
+      font-size: 0.95rem;
+      color: #cbd5e1; /* slate-300 */
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--brand);
+      color: #0f172a;
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 2rem; /* px-8 py-4 */
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(91, 192, 235, 0.35);
+      transition: transform 120ms ease, box-shadow 150ms ease, background 150ms ease;
+    }
+
+    .cta:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 14px 28px rgba(11, 110, 153, 0.35); }
+    .cta:active { transform: translateY(0); box-shadow: 0 10px 20px rgba(11, 110, 153, 0.25); }
+
+    .cta-inline { display: none; }
+    @media (min-width: 768px) { .cta-inline { display: inline-flex; } }
+
+    .muted { color: var(--muted); font-size: 1rem; }
+    .xs { font-size: 0.875rem; color: #94a3b8; }
+    .lead { color: #cbd5e1; font-size: 1.125rem; }
+
+    .bullet-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+    .bullet-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .dot {
+      margin-top: 0.25rem; /* mt-1 */
+      width: 8px; /* w-2 */
+      height: 8px; /* h-2 */
+      border-radius: 50%;
+      background: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .pill-card {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1rem;
+      background: rgba(2, 6, 23, 0.4); /* slate-950/40 */
+    }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .stat {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05); /* bg-white/5 */
+    }
+    .stat strong { font-size: 1.8rem; display: block; margin-bottom: 0.25rem; }
+
+    blockquote {
+      margin: 0;
+      border: 1px solid rgba(255, 255, 255, 0.05); /* white/5 */
+      border-radius: 1rem;
+      padding: 1.25rem; /* p-5 */
+      background: rgba(2, 6, 23, 0.4); /* slate-950/40 */
+    }
+    blockquote p { font-size: 1.125rem; color: #f8fafc; }
+    blockquote footer { margin-top: 0.75rem; color: #94a3b8; font-size: 0.9rem; }
+
+    details {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.25rem; /* p-5 */
+      background: rgba(2, 6, 23, 0.4); /* slate-950/40 */
+    }
+    details + details { margin-top: 0.75rem; }
+    details summary { cursor: pointer; font-weight: 700; color: #fff; }
+    details p { margin-top: 0.75rem; color: #cbd5e1; }
+
+    figure { margin: 0; }
+    img { max-width: 100%; border-radius: 18px; display: block; }
+    .hero-img { height: 18rem; width: 100%; object-fit: cover; border-radius: 1rem; }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem 0;
+      margin-top: 1rem;
+      color: #94a3b8; /* slate-400 */
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .footer-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; }
+
+    .two-col-sm { grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .two-col-sm { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    .two-col-lg { grid-template-columns: 1fr; }
+    @media (min-width: 1024px) { .two-col-lg { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    .testimonial-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 768px) { .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    .instructor-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem; /* gap-6 */
+      align-items: flex-start;
+    }
+    @media (min-width: 768px) {
+      .instructor-row { flex-direction: row; align-items: center; }
+    }
+    .instructor-figure { margin: 0; }
+    .avatar {
+      width: 500px;
+      height: 200px;
+      max-width: 100%;
+      border-radius: 9999px;
+      object-fit: cover;
+    }
+    .instructor-text { display: grid; gap: 0.75rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "End-to-End Machine Learning: From Idea to Implementation",
+      "description": "Hands-on Udemy program that guides you through every phase of sustainable, scalable machine learning project development with Python and real MLOps workflows.",
+      "provider": { "@type": "Organization", "name": "Udemy", "sameAs": "https://www.udemy.com" },
+      "instructor": {
+        "@type": "Person",
+        "name": "Kıvanç Yüksel",
+        "description": "Machine Learning Researcher and Engineer bridging academia and industry with hands-on Computer Vision, NLP, and audio expertise."
+      },
+      "courseCode": "end-to-end-machine-learning",
+      "keywords": [
+        "end-to-end machine learning",
+        "machine learning project development",
+        "MLOps with Python",
+        "sustainable and scalable ML projects"
+      ],
+      "audience": [
+        { "@type": "Audience", "audienceType": "Students who want to build a career in machine learning project development." },
+        { "@type": "Audience", "audienceType": "Machine learning engineers who need scalable, sustainable ML solutions." },
+        { "@type": "Audience", "audienceType": "Data scientists who want to strengthen their end-to-end project skills." },
+        { "@type": "Audience", "audienceType": "Researchers who want to develop ML models more efficiently." },
+        { "@type": "Audience", "audienceType": "Software developers entering ML / MLOps." },
+        { "@type": "Audience", "audienceType": "Start-up founders and technical project managers responsible for ML projects." },
+        { "@type": "Audience", "audienceType": "Tech professionals and companies wanting to implement sustainable, scalable ML projects." }
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "400" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "url": "https://www.udemy.com/course/sustainable-and-scalable-machine-learning-project-development/?couponCode=066571D2835A234D00C3"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K65WDZGV"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header>
+    <div class="wrap head-bar">
+      <div>
+        <div class="badge">Udemy Course</div>
+        <h1>End-to-End Machine Learning: From Idea to Implementation</h1>
+      </div>
+      <button class="cta cta-inline" id="cta-top">Start Learning Now</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="hero-row">
+        <div>
+          <div class="eyebrow">Sustainable MLOps Blueprint</div>
+          <h2>Build sustainable, production-grade ML systems from first data pull to deployment.</h2>
+          <p class="lead" style="margin-top: 0.5rem;">
+            Learn the architecture, tooling, and workflows that high-performing ML teams rely on to deliver trustworthy automation.
+            You will scope business problems, version data, orchestrate distributed training, evaluate models, automate deployments,
+            and monitor real traffic in one seamless course.
+          </p>
+          <div class="chip-row" style="margin: 1rem 0 0.75rem;">
+            <span class="chip">end-to-end machine learning</span>
+            <span class="chip">machine learning project development</span>
+            <span class="chip">MLOps with Python</span>
+            <span class="chip">sustainable ML projects</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+            <button class="cta" id="cta-main">Start Learning Now</button>
+          </div>
+        </div>
+        <div>
+          <figure>
+            <img class="hero-img" src="https://storage.googleapis.com/emkademy-public/images/udemy/udemy-course-image-new.png" alt="Laptop running a machine learning pipeline dashboard" loading="lazy" />
+          </figure>
+          <div class="stat-grid" style="margin-top: 1rem;">
+            <div class="stat">
+              <strong>4.9 / 5</strong>
+              <span class="muted">Average rating from 400 learners</span>
+            </div>
+            <div class="stat">
+              <strong>8,700+</strong>
+              <span class="muted">Students already enrolled</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="form-heading">
+      <div class="space-y-3">
+        <h3 id="form-heading">Claim an extra discount</h3>
+        <p class="lead">Click “Start Learning Now” for your instant discount. Share your details below to unlock an even bigger discount and course updates.</p>
+        <div id="mautic-form" style="margin-top: 0.5rem;">
+          <script type="text/javascript" src="//marketing.smiletoai.com/form/generate.js?id=1"></script>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Who this course is for</h3>
+      <p class="muted" style="margin-bottom: 1rem;">Whether you're launching your first ML team or scaling an established platform, you will learn pragmatic approaches that transfer straight into production workstreams.</p>
+      <ul class="bullet-list two-col-sm">
+        <li class="bullet-item"><span class="dot"></span><span>Students who want to build a career in machine learning project development.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Machine learning engineers who need scalable, sustainable ML solutions.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Data scientists who want to strengthen their end-to-end project skills.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Researchers who want to develop ML models more efficiently.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Software developers entering ML / MLOps.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Start-up founders and technical project managers responsible for ML projects.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Tech professionals and companies wanting to implement sustainable, scalable ML projects.</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>What you will learn</h3>
+      <p class="muted" style="margin-bottom: 1rem;">Apply a full lifecycle process that combines data engineering, experimentation, governance, and operations in a single guided roadmap.</p>
+      <ul class="bullet-list two-col-lg">
+        <li class="bullet-item"><span class="dot"></span><span>Efficiently build sustainable and scalable machine learning projects using best practices.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Apply data versioning and distributed data processing in real projects.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Design and implement robust feature extraction pipelines.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Run distributed model training and evaluate models systematically.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Track experiments and perform error analysis to improve model performance.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Deploy models to production and build applications around them (inference + app).</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Manage metadata and ensure reproducibility across the ML lifecycle.</span></li>
+        <li class="bullet-item"><span class="dot"></span><span>Understand and apply MLOps principles and tools in practice.</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Key benefits</h3>
+      <div class="bullet-list" style="grid-template-columns: 1fr; gap: 1rem;">
+        <div class="pill-card">Live capstone project that ties every module into a production-ready ML workflow.</div>
+        <div class="pill-card">Audit-ready documentation templates for governance and reproducibility.</div>
+        <div class="pill-card">Checklists for model monitoring, alerting, and safe retraining in production.</div>
+        <div class="pill-card">Downloadable notebooks and infrastructure-as-code samples to reuse instantly.</div>
+        <div class="pill-card">Practical troubleshooting frameworks for debugging performance and cost issues.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>What learners are saying</h3>
+      <div class="testimonial-grid" style="margin-top: 0.7rem;">
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Thank you for the course, learned a lot!”</p>
+          <footer>— Logan C., 5.0 ★ (2 months ago)</footer>
+        </blockquote>
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Truly amazing course!”</p>
+          <footer>— Emerson F., 5.0 ★ (2 months ago)</footer>
+        </blockquote>
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Great course, definitely recommend! Learned a lot...”</p>
+          <footer>— Heiden B., 5.0 ★ (4 months ago)</footer>
+        </blockquote>
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Solid instructor, learnt a lot. Format is a bit dry; more mini-projects would help.”</p>
+          <footer>— Hesch, 4.5 ★ (8 months ago)</footer>
+        </blockquote>
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Straightforward and hands-on. Finally, a machine learning course that focuses on building real projects.”</p>
+          <footer>— Judith B., 5.0 ★ (8 months ago)</footer>
+        </blockquote>
+        <blockquote>
+          <p class="muted" style="color: #e5e7eb;">“Excellent course! Covers the full ML pipeline with clear, practical examples.”</p>
+          <footer>— Rajesh S., 5.0 ★ (4 months ago)</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Meet your instructor</h3>
+      <div class="instructor-row">
+        <figure class="instructor-figure">
+          <img class="avatar" src="https://storage.googleapis.com/emkademy-public/images/udemy/professional-photo-of-me.jpg" alt="Instructor Kıvanç Yüksel smiling in front of a workstation" loading="lazy" />
+        </figure>
+        <div class="muted instructor-text">
+          <p>I am Kıvanç Yüksel, a Machine Learning Researcher and Engineer who unites rigorous academic work with high-impact industry systems. I have delivered Computer Vision, NLP, and audio pipelines used by thousands, always emphasizing sustainable engineering and clear communication.</p>
+          <p>My goal is to help you internalize the why behind every MLOps practice so you can adapt them to any stack—far beyond memorizing recipes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Frequently asked questions</h3>
+      <div style="margin-top: 0.75rem;">
+        <details>
+          <summary>How advanced is this course? Do I need prior ML experience?</summary>
+          <p class="muted">A working knowledge of Python and foundational ML concepts is helpful, but every module includes refreshers so motivated beginners can follow along.</p>
+        </details>
+        <details>
+          <summary>What tools and libraries are used?</summary>
+          <p class="muted">You will work with Python, scikit-learn, PyTorch, distributed data pipelines, experiment tracking tools, CI/CD, and cloud-native deployment patterns.</p>
+        </details>
+        <details>
+          <summary>Does the course cover real-world deployment and monitoring?</summary>
+          <p class="muted">Yes. You will containerize services, automate deployments, instrument monitoring, and build runbooks for on-call and retraining workflows.</p>
+        </details>
+        <details>
+          <summary>Can I follow the course without expensive infrastructure?</summary>
+          <p class="muted">Absolutely. Each step includes resource-conscious alternatives (serverless, managed notebooks, open-source orchestrators) so you can learn on a laptop or cloud credits.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>© <span id="year"></span> Kıvanç Yüksel. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const REFERRAL_LINK = 'https://www.udemy.com/course/sustainable-and-scalable-machine-learning-project-development/?couponCode=066571D2835A234D00C3';
+      const MAUTIC_GCLID_FIELD_ALIAS = 'gclid';
+      const GCLID_STORAGE_KEY = 'gclid';
+      const GCLID_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 90; // 90 days
+
+      function getQueryParam(name) {
+        const value = new URLSearchParams(window.location.search).get(name);
+        return value && value.trim() ? value.trim() : null;
+      }
+
+      function getCookie(name) {
+        const encodedName = encodeURIComponent(name) + '=';
+        const parts = document.cookie ? document.cookie.split(/;\s*/) : [];
+        for (const part of parts) {
+          if (part.startsWith(encodedName)) {
+            return decodeURIComponent(part.slice(encodedName.length));
+          }
+        }
+        return null;
+      }
+
+      function setCookie(name, value, maxAgeSeconds) {
+        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; Path=/; Max-Age=${maxAgeSeconds}; SameSite=Lax`;
+      }
+
+      function persistGclid(gclid) {
+        try {
+          window.localStorage.setItem(GCLID_STORAGE_KEY, gclid);
+        } catch (_) {
+          // ignore storage failures (private mode, blocked storage, etc.)
+        }
+
+        setCookie(GCLID_STORAGE_KEY, gclid, GCLID_COOKIE_MAX_AGE_SECONDS);
+      }
+
+      function getPersistedGclid() {
+        const gclidFromUrl = getQueryParam('gclid');
+        if (gclidFromUrl) {
+          persistGclid(gclidFromUrl);
+          return gclidFromUrl;
+        }
+
+        try {
+          const gclidFromStorage = window.localStorage.getItem(GCLID_STORAGE_KEY);
+          if (gclidFromStorage && gclidFromStorage.trim()) return gclidFromStorage.trim();
+        } catch (_) {
+          // ignore storage failures
+        }
+
+        const gclidFromCookie = getCookie(GCLID_STORAGE_KEY);
+        return gclidFromCookie && gclidFromCookie.trim() ? gclidFromCookie.trim() : null;
+      }
+
+      function setGclidOnMauticForm() {
+        const gclid = getPersistedGclid();
+        if (!gclid) return;
+
+        const wrapper = document.getElementById('mautic-form');
+        if (!wrapper) return;
+
+        const trySetField = () => {
+          const form = wrapper.querySelector('form[data-mautic-form]');
+          const formApiName = form ? form.getAttribute('data-mautic-form') : null;
+
+          let field = null;
+
+          if (formApiName) {
+            field = document.getElementById(`mauticform_input_${formApiName}_${MAUTIC_GCLID_FIELD_ALIAS}`);
+
+            window.MauticFormCallback = window.MauticFormCallback || {};
+            const callbacks = window.MauticFormCallback[formApiName] || {};
+            if (!callbacks.__gclidHookAttached) {
+              const previousOnValidate = callbacks.onValidate;
+              callbacks.onValidate = function (data) {
+                trySetField();
+                if (typeof previousOnValidate === 'function') {
+                  const result = previousOnValidate(data);
+                  return result === undefined ? null : result;
+                }
+                return null;
+              };
+              callbacks.__gclidHookAttached = true;
+              window.MauticFormCallback[formApiName] = callbacks;
+            }
+          }
+
+          if (!field) {
+            const scope = form || wrapper;
+            field = scope.querySelector(
+              `input[name="mauticform[${MAUTIC_GCLID_FIELD_ALIAS}]"], input[name$="[${MAUTIC_GCLID_FIELD_ALIAS}]"], input[id$="_${MAUTIC_GCLID_FIELD_ALIAS}"]`
+            );
+          }
+
+          if (!field) return false;
+          field.value = gclid;
+          return true;
+        };
+
+        if (trySetField()) return;
+
+        const observer = new MutationObserver(() => {
+          if (trySetField()) observer.disconnect();
+        });
+
+        observer.observe(wrapper, { childList: true, subtree: true });
+      }
+
+      function handleCtaClick() {
+        const newTab = window.open(REFERRAL_LINK, '_blank', 'noopener');
+        if (newTab) newTab.opener = null; // security: prevent access to opener
+      }
+
+      document.getElementById('cta-main').addEventListener('click', handleCtaClick);
+      document.getElementById('cta-top').addEventListener('click', handleCtaClick);
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+      setGclidOnMauticForm();
+    })();
+  </script>
+</body>
+</html>

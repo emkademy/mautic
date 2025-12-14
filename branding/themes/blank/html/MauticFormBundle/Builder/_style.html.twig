@@ -1,0 +1,43 @@
+{# Absurd test styling for Blank theme to verify overrides #}
+<style type="text/css" scoped>
+    {% set bg = 'repeating-linear-gradient(45deg,#ff00ff 0 20px,#00ffff 20px 40px)' %}
+
+    .mauticform_wrapper {
+        max-width: 740px;
+        margin: 24px auto;
+        padding: 24px;
+        font-family: "Comic Sans MS", "Comic Neue", cursive;
+        background: {{ bg }};
+        border: 10px double #000;
+        color: #000;
+        transform: rotate(-0.5deg);
+    }
+
+    .mauticform-name { font-size: 2rem; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 0 #fff; }
+    .mauticform-description { font-style: italic; }
+
+    .mauticform-label { font-weight: 800; text-decoration: underline wavy #0ff; }
+    .mauticform-row.mauticform-required .mauticform-label:after { content: ' (REQUIRED!!!)'; color: #f00; }
+
+    .mauticform-input,
+    .mauticform-textarea,
+    .mauticform-selectbox {
+        width: 100%;
+        padding: 14px;
+        border: 5px solid #111;
+        border-radius: 14px;
+        background: #ffff00;
+        box-shadow: 6px 6px 0 #000;
+    }
+
+    .mauticform-button-wrapper .mauticform-button {
+        padding: 14px 24px;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #fff;
+        background: linear-gradient(90deg,#ff00ff,#00ffff);
+        border: 5px solid #000;
+        border-radius: 999px;
+        box-shadow: 8px 8px 0 #000;
+    }
+</style>

@@ -1,0 +1,20 @@
+# use this file for environment variables that can be used.
+# see https://docs.mautic.org/en/5.x/
+
+MAUTIC_DB_HOST="${MYSQL_HOST}"
+MAUTIC_DB_PORT="${MYSQL_PORT}"
+MAUTIC_DB_DATABASE="${MYSQL_DATABASE}"
+MAUTIC_DB_USER="${MYSQL_USER}"
+MAUTIC_DB_PASSWORD="${MYSQL_PASSWORD}"
+
+# Mail transport (defaults to localhost:25 if unset). Use Amazon SES via Symfony Mailer HTTP transport.
+# Fill in your AWS creds/region or override via environment.
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+# Amazon SES transport (via plugin): mautic+ses+api scheme, include region.
+# If your secret contains / or +, URL-encode it (or create a new key without those chars).
+MAUTIC_MAILER_DSN="mautic+ses+api://${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}@default?region=${AWS_DEFAULT_REGION}"
+
+MAUTIC_MESSENGER_DSN_EMAIL="amqp://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:5672/${RABBITMQ_DEFAULT_VHOST}/messages"
+MAUTIC_MESSENGER_DSN_HIT="amqp://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:5672/${RABBITMQ_DEFAULT_VHOST}/messages"

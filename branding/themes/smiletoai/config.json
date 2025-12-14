@@ -1,0 +1,13 @@
+{
+  "name": "smiletoai",
+  "label": "SmileToAI",
+  "author": "SmileToAI",
+  "description": "Branded SmileToAI theme for forms/landing pages.",
+  "version": "1.0.0",
+  "features": {
+    "page": true,
+    "form": true,
+    "message": true,
+    "email": false
+  }
+}
