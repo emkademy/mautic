@@ -36,3 +36,12 @@ docker compose exec --user=www-data mautic_cron php /var/www/html/bin/console ma
 docker compose exec --user=www-data mautic_worker php /var/www/html/bin/console mautic:queue:process
 ```
 If you need an interactive shell, use: `docker compose exec --user=www-data mautic_web bash`.
+
+## Contact export emails not arriving
+Mautic’s GUI “Export contacts” can queue the export and only emails the download link after the scheduled export processor runs.
+This stack enables that via `cron/mautic` (runs `mautic:contacts:scheduled_export` every 3 minutes).
+
+To run it once manually:
+```bash
+docker compose exec --user=www-data mautic_web php /var/www/html/bin/console mautic:contacts:scheduled_export --env=prod
+```

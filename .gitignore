@@ -1,2 +1,4 @@
 .env
 .mautic_env
+mautic/logs
+mautic/media

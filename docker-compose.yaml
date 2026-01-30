@@ -10,11 +10,12 @@ x-mautic-volumes:
   - mautic-cache:/var/www/html/var/cache
   - ./mautic/media/files:/var/www/html/docroot/media/files:z
   - ./mautic/media/images:/var/www/html/docroot/media/images:z
-#  - ./cron:/opt/mautic/cron:z # Uncomment this line to customize your cron configuration
+  - ./cron:/opt/mautic/cron:z # Customize cron configuration (incl. scheduled exports)
 
 services:
   db:
     image: mysql:lts
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -33,6 +34,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3
+    restart: unless-stopped
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -45,6 +47,7 @@ services:
   mautic_web:
     build: *mautic-build
     image: mautic-custom:latest
+    restart: unless-stopped
     links:
       - db:mysql
     ports:
@@ -73,6 +76,7 @@ services:
 
   mautic_cron:
     image: mautic-custom:latest
+    restart: unless-stopped
     links:
       - db:mysql
     volumes: *mautic-volumes
@@ -88,6 +92,7 @@ services:
 
   mautic_worker:
     image: mautic-custom:latest
+    restart: unless-stopped
     links:
       - db:mysql
     volumes: *mautic-volumes
