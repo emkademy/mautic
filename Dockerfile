@@ -7,6 +7,16 @@ WORKDIR /var/www/html
 ENV COMPOSER_HOME=/tmp/composer \
     COMPOSER_ALLOW_SUPERUSER=1
 
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+ && docker-php-ext-install -j"$(nproc)" gd \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN mkdir -p "$COMPOSER_HOME" \
  && composer require etailors/mautic-amazon-ses:^1.0 -W --no-interaction --no-progress \
  && composer install --no-dev --no-interaction --no-progress --optimize-autoloader \

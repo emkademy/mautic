@@ -37,6 +37,15 @@ docker compose exec --user=www-data mautic_worker php /var/www/html/bin/console 
 ```
 If you need an interactive shell, use: `docker compose exec --user=www-data mautic_web bash`.
 
+## Update a theme
+Theme files in `branding/themes` are baked into the image at build time. After changing a theme:
+```bash
+make build
+make up
+make cache-clear
+```
+If you still don't see updates, hard refresh the page or re-save the form/landing page in Mautic.
+
 ## Contact export emails not arriving
 Mautic’s GUI “Export contacts” can queue the export and only emails the download link after the scheduled export processor runs.
 This stack enables that via `cron/mautic` (runs `mautic:contacts:scheduled_export` every 3 minutes).
